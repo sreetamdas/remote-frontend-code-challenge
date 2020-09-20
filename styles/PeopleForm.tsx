@@ -11,6 +11,7 @@ export const PeopleFormContainer = styled.div`
 export const PeopleFormHeader = styled.div`
 	padding: 34px 36px;
 	border-bottom: 1px solid #eaedf3;
+	font-size: 22px;
 `;
 
 export const PeopleFormFooter = styled.div`
@@ -37,14 +38,16 @@ export const PeopleFormTextInput = styled.input`
 	font-size: 20px;
 	padding-top: 4px;
 	width: 100%;
-	border-bottom: black 1px solid;
+	border-bottom: #ced5db 1.5px solid;
+	color: var(--color-text-main);
 
 	::placeholder {
-		color: purple;
+		color: var(--color-text-soft);
+		opacity: 100%;
 	}
 
 	&:focus {
 		outline: none;
-		border-bottom: purple 1px solid;
+		border-bottom: var(--color-primary-accent) 1.5px solid;
 	}
 `;

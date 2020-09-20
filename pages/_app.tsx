@@ -27,13 +27,18 @@ const GlobalStyles = createGlobalStyle`
 		--color-secondary-accent: #61DAFB;
 		--header-bg-color: #FFF;
 		--font-family-code: SFMono-Regular, Consolas, Roboto Mono, Menlo, Monaco, Liberation Mono, Lucida Console, monospace;
+
+		--color-text-soft: #525F7F;
+		--color-text-softer: #778CA3;
+		--color-text-main: #00234B;
+
 	}
 
   	html, body {
 		font-size: 18px;
 		font-family: -apple-system, BlinkMacSystemFont, Inter, Roboto, Segoe UI, Oxygen, Ubuntu,
 			Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-		color: var(--color-primary);
+		color: var(--color-text-main);
 		background-color: var(--color-background);
 		margin: 0;
 		height: 100%;
@@ -76,7 +81,9 @@ export type TPeopleContext = {
 	peopleList: Array<TPeopleAttributes>;
 	setPeopleList: Dispatch<SetStateAction<Array<TPeopleAttributes>>>;
 };
-export const PeopleContext = createContext<TPeopleContext>({} as TPeopleContext);
+export const PeopleContext = createContext<TPeopleContext>(
+	{} as TPeopleContext,
+);
 
 const App = ({ Component, pageProps }: AppProps) => {
 	const [peopleList, setPeopleList] = useState(PEOPLE_LIST_INITIAL);

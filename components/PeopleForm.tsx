@@ -30,6 +30,19 @@ export const PeopleForm = ({ person }: TPeopleFormProps) => {
 		<PeopleFormContainer>
 			<PeopleFormHeader>
 				{isEditingMode ? "Edit employee" : "Add a new employee"}
+				<br />
+				<span
+					style={{
+						color: "var(--color-text-soft)",
+						fontSize: "14px",
+						fontWeight: 300,
+						paddingTop: "6px",
+					}}
+				>
+					{isEditingMode
+						? "Edit the information of your employee."
+						: "Fill out the information of your new employee."}
+				</span>
 			</PeopleFormHeader>
 			<PeopleFormMain>
 				<PeopleFormInputGroup name="Name" hint="First and last names">
@@ -59,7 +72,7 @@ const PeopleFormInputGroup = ({
 	children,
 }: TInputFormGroupProps) => {
 	return (
-		<div style={{ fontSize: "13px" }}>
+		<div style={{ fontSize: "13px", color: "var(--color-text-softer)" }}>
 			<FormCaptureFocus>
 				<label>
 					{name}
@@ -67,7 +80,13 @@ const PeopleFormInputGroup = ({
 					{children}
 				</label>
 			</FormCaptureFocus>
-			<div style={{ color: "#000", opacity: "50%", paddingTop: "8px" }}>
+			<div
+				style={{
+					color: "var(--color-text-main)",
+					opacity: "50%",
+					paddingTop: "8px",
+				}}
+			>
 				{hint}
 			</div>
 		</div>
@@ -76,6 +95,6 @@ const PeopleFormInputGroup = ({
 
 const FormCaptureFocus = styled.div`
 	&:focus-within {
-		color: purple;
+		color: var(--color-primary-accent);
 	}
 `;
