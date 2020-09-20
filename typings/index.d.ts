@@ -1,4 +1,5 @@
 declare type TPeopleAttributes = {
+	_id: string;
 	name: string;
 	dateOfBirth: Date;
 	jobTitle: string;

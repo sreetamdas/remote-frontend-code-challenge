@@ -1,8 +1,15 @@
-import React, { Fragment } from "react";
+import React, {
+	createContext,
+	Dispatch,
+	Fragment,
+	SetStateAction,
+	useState,
+} from "react";
 import { AppProps } from "next/app";
 
 import { createGlobalStyle } from "styled-components";
 import Head from "next/head";
+import { PEOPLE_LIST_INITIAL } from "utils";
 
 /**
  * colors:
@@ -65,7 +72,15 @@ const GlobalStyles = createGlobalStyle`
 	}
 `;
 
+export type TPeopleContext = {
+	peopleList: Array<TPeopleAttributes>;
+	setPeopleList: Dispatch<SetStateAction<Array<TPeopleAttributes>>>;
+};
+export const PeopleContext = createContext<TPeopleContext>({} as TPeopleContext);
+
 const App = ({ Component, pageProps }: AppProps) => {
+	const [peopleList, setPeopleList] = useState(PEOPLE_LIST_INITIAL);
+
 	return (
 		<Fragment>
 			<Head>
@@ -75,7 +90,9 @@ const App = ({ Component, pageProps }: AppProps) => {
 				/>
 			</Head>
 			<GlobalStyles />
-			<Component {...pageProps} />
+			<PeopleContext.Provider value={{ peopleList, setPeopleList }}>
+				<Component {...pageProps} />
+			</PeopleContext.Provider>
 		</Fragment>
 	);
 };
