@@ -12,6 +12,7 @@ import Head from "next/head";
 const GlobalStyles = createGlobalStyle`
 	:root {
 		--color-primary-accent: #624de3;
+		--color-primary-accent-faded: #624de34d;
 		--color-primary: #000;
 		--color-background: #f4f7fc;
 		--color-inlineCode-fg: #EB5757;

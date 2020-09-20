@@ -1,4 +1,13 @@
-import { PeopleListContainer } from "styles/layouts";
+import { Fragment } from "react";
+import { StyledButton } from "styles/components";
+import {
+	PeopleListContainer,
+	PeopleListEntryContainer,
+	PeopleListHeadingRow,
+	PeopleListRowContainer,
+} from "styles/layouts";
+
+const LIST_HEADINGS = ["Employee", "Job Title", "Country", "Salary", ""];
 
 export type TPeopleListProps = {
 	peopleList: Array<TPeopleAttributes>;
@@ -6,17 +15,44 @@ export type TPeopleListProps = {
 export const PeopleList = ({ peopleList }: TPeopleListProps) => {
 	return (
 		<PeopleListContainer>
-			list of peoples:
+			<PeopleListHeadingRow>
+				<PeopleListRowContainer style={{ padding: "15px 0" }}>
+					{LIST_HEADINGS.map((heading) => (
+						<span key={heading}>{heading}</span>
+					))}
+				</PeopleListRowContainer>
+			</PeopleListHeadingRow>
 			{peopleList.map((personInfo) => (
-				<div>
-					{personInfo.name}
-					{personInfo.dateOfBirth}
-					{personInfo.country}
-					{personInfo.salary}
-					{personInfo.jobTitle}
-				</div>
+				<PeopleListEntryContainer key={personInfo.name}>
+					<PeopleListRowContainer>
+						<PeopleListEntry person={personInfo} />
+					</PeopleListRowContainer>
+				</PeopleListEntryContainer>
 			))}
 		</PeopleListContainer>
+	);
+};
+
+type TPersonEntry = { person: TPeopleAttributes };
+const PeopleListEntry = ({ person }: TPersonEntry) => {
+	return (
+		<Fragment>
+			<div>
+				<span style={{ fontSize: "18px", fontWeight: 600 }}>
+					{person.name}
+				</span>
+				<br />
+				<span style={{ fontSize: "14px", fontWeight: 400 }}>
+					{new Intl.DateTimeFormat("en-GB").format(
+						person.dateOfBirth,
+					)}
+				</span>
+			</div>
+			<div>{person.jobTitle}</div>
+			<div>{person.country}</div>
+			<div>{person.salary}</div>
+			<StyledButton>Edit</StyledButton>
+		</Fragment>
 	);
 };
 

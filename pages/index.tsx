@@ -6,18 +6,23 @@ import { GridContainer, Header, PeopleListActionBar } from "styles/layouts";
 
 const peopleListInitial: Array<TPeopleAttributes> = [
 	{
-		name: "sreetam",
+		name: "Sreetam Das",
 		country: "India",
-		dateOfBirth: Date.now().toString(),
+		dateOfBirth: new Date(),
 		jobTitle: "developer",
 		salary: 5000,
+	},
+	{
+		name: "Areena Arora",
+		country: "India",
+		dateOfBirth: new Date(),
+		jobTitle: "journalist",
+		salary: 7777,
 	},
 ];
 
 const Home = () => {
-	const [peopleList, setPeopleList] = useState<Array<TPeopleAttributes>>(
-		peopleListInitial,
-	);
+	const [peopleList] = useState<Array<TPeopleAttributes>>(peopleListInitial);
 	return (
 		<Fragment>
 			<Head>
@@ -30,7 +35,9 @@ const Home = () => {
 						<div>people</div>
 						<div>3 employees</div>
 					</div>
-					<StyledButton primary>Add Employee</StyledButton>
+					<StyledButton primary dropShadow size="large">
+						Add Employee
+					</StyledButton>
 				</PeopleListActionBar>
 				<PeopleList {...{ peopleList }} />
 			</GridContainer>
