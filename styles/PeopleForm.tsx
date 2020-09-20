@@ -23,3 +23,28 @@ export const PeopleFormFooter = styled.div`
 	justify-items: center;
 	justify-content: center;
 `;
+
+export const PeopleFormMain = styled.div`
+	display: grid;
+	justify-self: center;
+	width: 100%;
+	max-width: 600px;
+`;
+
+export const PeopleFormTextInput = styled.input`
+	box-sizing: none;
+	border: none;
+	font-size: 20px;
+	padding-top: 4px;
+	width: 100%;
+	border-bottom: black 1px solid;
+
+	::placeholder {
+		color: purple;
+	}
+
+	&:focus {
+		outline: none;
+		border-bottom: purple 1px solid;
+	}
+`;
