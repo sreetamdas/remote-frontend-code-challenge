@@ -11,7 +11,7 @@ export const Header = styled.header`
 export const GridContainer = styled.div`
 	display: grid;
 	justify-items: center;
-	padding: 0 100px;
+	padding: 30px 100px;
 `;
 
 export const PeopleListActionBar = styled.div`

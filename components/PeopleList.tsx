@@ -1,4 +1,6 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
+import Link from "next/link";
+
 import { StyledButton } from "styles/components";
 import {
 	PeopleListContainer,
@@ -6,13 +8,12 @@ import {
 	PeopleListHeadingRow,
 	PeopleListRowContainer,
 } from "styles/layouts";
+import { PeopleContext } from "pages/_app";
 
 const LIST_HEADINGS = ["Employee", "Job Title", "Country", "Salary", ""];
 
-export type TPeopleListProps = {
-	peopleList: Array<TPeopleAttributes>;
-};
-export const PeopleList = ({ peopleList }: TPeopleListProps) => {
+export const PeopleList = () => {
+	const { peopleList } = useContext(PeopleContext);
 	return (
 		<PeopleListContainer>
 			<PeopleListHeadingRow>
@@ -51,7 +52,9 @@ const PeopleListEntry = ({ person }: TPersonEntry) => {
 			<div>{person.jobTitle}</div>
 			<div>{person.country}</div>
 			<div>{person.salary}</div>
-			<StyledButton>Edit</StyledButton>
+			<Link href={`update/${person._id}`}>
+				<StyledButton>Edit</StyledButton>
+			</Link>
 		</Fragment>
 	);
 };

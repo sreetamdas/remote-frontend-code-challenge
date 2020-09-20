@@ -6,7 +6,8 @@ type TStyledButtonProps = {
 	size?: "large";
 };
 export const StyledButton = styled.button<TStyledButtonProps>`
-	padding: 10px 20px;
+	cursor: pointer;
+	padding: 10px 50px;
 	min-width: 80px;
 	height: ${({ size }) => (size === "large" ? "45px" : "40px")};
 	border-radius: 50px;
