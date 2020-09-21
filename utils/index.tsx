@@ -1,3 +1,6 @@
+export const createUserId = (): string =>
+	window.crypto.getRandomValues(new Uint32Array(10))[0].toString();
+
 export const PEOPLE_LIST_INITIAL: Array<TPeopleAttributes> = [
 	{
 		_id: "asd001",
