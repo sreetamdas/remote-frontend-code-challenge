@@ -30,10 +30,11 @@ export const PeopleFormMain = styled.div`
 	justify-self: center;
 	width: 100%;
 	max-width: 600px;
+	grid-gap: 1.5rem;
+	padding: 48px 0;
 `;
 
 export const PeopleFormTextInput = styled.input`
-	box-sizing: none;
 	border: none;
 	font-size: 20px;
 	padding-top: 4px;
@@ -49,5 +50,52 @@ export const PeopleFormTextInput = styled.input`
 	&:focus {
 		outline: none;
 		border-bottom: var(--color-primary-accent) 1.5px solid;
+	}
+`;
+
+export const PeopleFormDateInput = styled.input.attrs({ type: "date" })`
+	font-family: inherit;
+	border: none;
+	font-size: 20px;
+	padding-top: 4px;
+	width: 100%;
+	border-bottom: #ced5db 1.5px solid;
+	color: var(--color-text-main);
+
+	::placeholder {
+		color: var(--color-text-soft);
+		/* opacity: 100%; */
+	}
+
+	&:focus {
+		outline: none;
+		border-bottom: var(--color-primary-accent) 1.5px solid;
+	}
+`;
+
+export const PeopleFormSelectInput = styled.select`
+	width: 100%;
+	font-size: 20px;
+	padding-top: 4px;
+	cursor: pointer;
+	border: none;
+	appearance: none;
+	color: var(--color-text-soft);
+	border-bottom: #ced5db 1.5px solid;
+
+	/* background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACuklEQVR4nO3ZT2gUZxzG8c8a/1VRo43BVsSABqSCaEEUFD14ELx46KGHevBQPCiIoAcppSAU2oMgeiiFHESoUIqFQslBRBEJiErF/4JY1ICKKK34J2pR42E2NNXN5n1nZ3fT+H7hB8sy8zzPb3Zm9jfzkkgkEolEIpFIJBKJRGIISs0OkINCMk/HMTzGhiIEG8RG9OE4WvOKfIiz6C/Xa2yqPVvd2eLfzP34AzNiRdpx4S2hgdpWVNI6sEPlzOfQFiryES4PITRQXxWZugBK+Eb1zBdlP+ywDD7tq9W3RsbNsYTvhWU+HSJ4P1CsH3s09yCMwb4KuYaq2yGiK/AoQvTHcpBG04KuiJwPsTxUfCn+ihA/gLG19xTMWByMyPcAn8aaLMK9CJNfMD5/T8GMx68Rue5iYV6zBbLrJtTsd0zMaxbAB+iOyNOLzlpN5+FmhOkRTK7VtAKTcTQix5/oKMp8Dq5FmJ/A1KLMMQ09Ef5XMbtAfzALlyJCnJJjBK3ADJyJ8D0vcODJQ5vwQalfNoLOrMGvXdZQqN8ZxRz0qrTiZESoK/g4h89s2akc6tMju1QawhTZo2ZouOuYG6HfIbuJheofVZ8bb1Um4XBEyF7MD9DtLG8bqtst+3tsChPw2zABB9cdfFJFb6FscAnVO6Qxw1dVxuFn4aHvY3EFnSXiHsR+0tjxuyot2C88/N9YNmj/ZeXvQvfvKnuOKMbgB+FNPMYqrC5/Dt1vr5HxHqIiJewW3kxfuUK3/84Ibn6AEnYJbyq0vvY/aH4wOxXX/PYGZy+MrWpvfnPDUxfMl7I1hdjGX8kWOEYFX+Cl8OZf4vOmJK0jn+Efwzf/AuublLHurMNzQzf/DGublq5BrMFT7zb/RDYUvRes9N+1h6h39qOFpbiFG3K8s08kEolEIpFIJBKJRCKRyMsbiuRAkKLT0GgAAAAASUVORK5CYII=");
+	background-repeat: no-repeat;
+	background-position: right 0.5rem center;
+	background-size: 16px; */
+
+	&:focus {
+		outline: none;
+		border-bottom: var(--color-primary-accent) 1.5px solid;
+		color: var(--color-text-main);
+	}
+
+	& option {
+		padding: 0;
+		color: var(--color-text-main);
 	}
 `;

@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import Head from "next/head";
 
 import { GridContainer } from "styles/layouts";
+import { PeopleForm } from "components/PeopleForm";
 
 const AddRecord = () => {
 	return (
@@ -10,7 +11,7 @@ const AddRecord = () => {
 				<title>People List</title>
 			</Head>
 			<GridContainer>
-				<h1>Add a record</h1>
+				<PeopleForm />
 			</GridContainer>
 		</Fragment>
 	);
