@@ -10,6 +10,7 @@ import { AppProps } from "next/app";
 import { createGlobalStyle } from "styled-components";
 import Head from "next/head";
 import { PEOPLE_LIST_INITIAL } from "utils";
+import { Header } from "styles/layouts";
 
 /**
  * colors:
@@ -98,6 +99,45 @@ const App = ({ Component, pageProps }: AppProps) => {
 			</Head>
 			<GlobalStyles />
 			<PeopleContext.Provider value={{ peopleList, setPeopleList }}>
+				<Header>
+					<div
+						style={{
+							fontSize: "16px",
+							color: "var(--color-text-main)",
+							display: "inline-block",
+						}}
+					>
+						<span
+							style={{
+								background: "#FFE8DF",
+								borderRadius: "50%",
+								display: "inline-block",
+								height: "36px",
+								width: "36px",
+								verticalAlign: "middle",
+							}}
+						/>
+						<div
+							style={{
+								display: "inline-block",
+								verticalAlign: "middle",
+								paddingLeft: "13px",
+							}}
+						>
+							Julie Howard
+							<br />
+							<div
+								style={{
+									fontSize: "13px",
+									color: "var(--color-text-softer)",
+									paddingTop: "2px",
+								}}
+							>
+								Admin
+							</div>
+						</div>
+					</div>
+				</Header>
 				<Component {...pageProps} />
 			</PeopleContext.Provider>
 		</Fragment>

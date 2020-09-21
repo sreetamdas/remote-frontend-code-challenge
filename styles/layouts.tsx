@@ -3,8 +3,9 @@ import styled from "styled-components";
 export const Header = styled.header`
 	display: grid;
 	justify-items: end;
+	align-items: center;
 	background-color: var(--header-bg-color);
-	height: 70px;
+	height: 80px;
 	padding: 0 100px;
 `;
 

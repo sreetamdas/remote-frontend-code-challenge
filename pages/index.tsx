@@ -2,7 +2,7 @@ import { PeopleList } from "components/PeopleList";
 import Head from "next/head";
 import { Fragment } from "react";
 import { StyledButton } from "styles/components";
-import { GridContainer, Header, PeopleListActionBar } from "styles/layouts";
+import { GridContainer, PeopleListActionBar } from "styles/layouts";
 
 const Home = () => {
 	return (
@@ -10,7 +10,6 @@ const Home = () => {
 			<Head>
 				<title>People List</title>
 			</Head>
-			<Header>header</Header>
 			<GridContainer>
 				<PeopleListActionBar>
 					<div>
