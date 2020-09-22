@@ -1,7 +1,7 @@
+import React, { ChangeEvent, useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { PeopleContext } from "pages/_app";
-import { ChangeEvent, useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { StyledButton } from "styles/components";

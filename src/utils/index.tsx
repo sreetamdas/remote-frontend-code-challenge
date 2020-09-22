@@ -6,7 +6,7 @@ export const formatDateToDDMMYYYY = (date: Date) => {
 	const dateinMMDDYYYY = new Intl.DateTimeFormat("en-US", {
 		day: "2-digit",
 		month: "2-digit",
-		year: "numeric"
+		year: "numeric",
 	}).format(date);
 	const [month, day, year] = dateinMMDDYYYY.split("/");
 

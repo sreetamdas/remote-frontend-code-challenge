@@ -1,4 +1,4 @@
-import { Fragment, useContext } from "react";
+import React, { Fragment, useContext } from "react";
 import Head from "next/head";
 import Link from "next/link";
 
@@ -25,6 +25,7 @@ const Home = () => {
 								color: "var(--color-text-softer)",
 								paddingLeft: "8px",
 							}}
+							data-testid="employee-count"
 						>
 							{peopleList.length
 								? `${peopleList.length} ${

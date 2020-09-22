@@ -69,7 +69,7 @@ export const PeopleContext = createContext<TPeopleContext>(
 
 const App = ({ Component, pageProps }: AppProps) => {
 	const [peopleList, setPeopleList] = useState<Array<TPeopleAttributes>>(
-		process.env.NODE_ENV === "development" ? PEOPLE_LIST_INITIAL : [],
+		process.env.NODE_ENV === "production" ? [] : PEOPLE_LIST_INITIAL,
 	);
 
 	return (
