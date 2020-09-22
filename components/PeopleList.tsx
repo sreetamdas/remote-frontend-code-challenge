@@ -9,6 +9,7 @@ import {
 	PeopleListRowContainer,
 } from "styles/layouts";
 import { PeopleContext } from "pages/_app";
+import { formatDateToDDMMYYYY, formatSalaryToLocaleString } from "utils";
 
 const LIST_HEADINGS = ["Employee", "Job Title", "Country", "Salary", ""];
 
@@ -17,15 +18,22 @@ export const PeopleList = () => {
 	return (
 		<PeopleListContainer>
 			<PeopleListHeadingRow>
-				<PeopleListRowContainer style={{ padding: "15px 0" }}>
+				<PeopleListRowContainer style={{ padding: "10px 0" }}>
 					{LIST_HEADINGS.map((heading) => (
 						<span key={heading}>{heading}</span>
 					))}
 				</PeopleListRowContainer>
 			</PeopleListHeadingRow>
 			{peopleList.map((personInfo) => (
-				<PeopleListEntryContainer key={personInfo.name}>
-					<PeopleListRowContainer>
+				<PeopleListEntryContainer key={personInfo._id}>
+					<PeopleListRowContainer
+						style={{
+							color: "var(--color-text-soft)",
+							fontSize: "16px",
+							fontWeight: 300,
+							alignItems: "center",
+						}}
+					>
 						<PeopleListEntry person={personInfo} />
 					</PeopleListRowContainer>
 				</PeopleListEntryContainer>
@@ -39,19 +47,45 @@ const PeopleListEntry = ({ person }: TPersonEntry) => {
 	return (
 		<Fragment>
 			<div>
-				<span style={{ fontSize: "18px", fontWeight: 600 }}>
+				<span
+					style={{
+						fontSize: "18px",
+						fontWeight: 600,
+						color: "var(--color-text-main)",
+					}}
+				>
 					{person.name}
 				</span>
 				<br />
-				<span style={{ fontSize: "14px", fontWeight: 400 }}>
-					{new Intl.DateTimeFormat("en-GB").format(
-						person.dateOfBirth,
-					)}
+				<span
+					style={{
+						fontSize: "14px",
+						fontWeight: 300,
+						color: "var(--color-text-softer)",
+					}}
+				>
+					{formatDateToDDMMYYYY(person.dateOfBirth)}
 				</span>
 			</div>
 			<div>{person.jobTitle}</div>
 			<div>{person.country}</div>
-			<div>{person.salary}</div>
+			<div
+				style={{
+					fontWeight: 500,
+				}}
+			>
+				{formatSalaryToLocaleString(person.salary)} USD
+				<span
+					style={{
+						fontSize: "13px",
+						color: "var(--color-text-softer)",
+						paddingLeft: "4px",
+						fontWeight: 300,
+					}}
+				>
+					per year
+				</span>
+			</div>
 			<Link href={`update/${person._id}`}>
 				<StyledButton>Edit</StyledButton>
 			</Link>

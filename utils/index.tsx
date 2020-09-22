@@ -1,22 +1,39 @@
 export const createUserId = (): string =>
 	window.crypto.getRandomValues(new Uint32Array(10))[0].toString();
 
+export const formatDateToDDMMYYYY = (date: Date) =>
+	new Intl.DateTimeFormat("en-GB").format(date);
+
+export const formatDateToYYYYMMDD = (date: Date) => {
+	const dateInDDMMYYYY = formatDateToDDMMYYYY(date);
+	const [day, month, year] = dateInDDMMYYYY.split("/");
+
+	return `${year}-${month}-${day}`;
+};
+
+export const formatSalaryToLocaleString = (amount: string | number): string => {
+	if (typeof amount === "string") {
+		amount = parseInt(amount);
+	}
+	return amount.toLocaleString();
+};
+
 export const PEOPLE_LIST_INITIAL: Array<TPeopleAttributes> = [
 	{
 		_id: "asd001",
 		name: "Sreetam Das",
 		country: "India",
-		dateOfBirth: new Date(),
-		jobTitle: "developer",
-		salary: 5000,
+		dateOfBirth: new Date(1997, 5, 20),
+		jobTitle: "Software Developer",
+		salary: "5000000",
 	},
 	{
 		_id: "asd002",
 		name: "Areena Arora",
 		country: "India",
-		dateOfBirth: new Date(),
-		jobTitle: "journalist",
-		salary: 7777,
+		dateOfBirth: new Date(1996, 6, 1),
+		jobTitle: "Investigative Journalist",
+		salary: 77777,
 	},
 ];
 
