@@ -1,4 +1,4 @@
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
@@ -10,13 +10,18 @@ const UpdateRecord = () => {
 	const router = useRouter();
 	const { id } = router.query;
 	const { peopleList } = useContext(PeopleContext);
+	const [currentPerson, setCurrentPerson] = useState(
+		peopleList.find((person) => person._id === id),
+	);
 
-	const currentPerson = peopleList.find((person) => person._id === id);
+	useEffect(() => {
+		setCurrentPerson(peopleList.find((person) => person._id === id));
+	}, [id]);
 
 	return (
 		<Fragment>
 			<Head>
-				<title>People List</title>
+				<title>Edit Person</title>
 			</Head>
 
 			<GridContainer>
