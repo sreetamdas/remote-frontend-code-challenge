@@ -53,6 +53,10 @@ const GlobalStyles = createGlobalStyle`
 			text-decoration: underline;
 		}
 	}
+
+	p {
+		margin: 0;
+	}
 `;
 
 export type TPeopleContext = {

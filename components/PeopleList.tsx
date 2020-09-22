@@ -46,7 +46,7 @@ type TPersonEntry = { person: TPeopleAttributes };
 const PeopleListEntry = ({ person }: TPersonEntry) => {
 	return (
 		<Fragment>
-			<div>
+			<p>
 				<span
 					style={{
 						fontSize: "18px",
@@ -66,10 +66,10 @@ const PeopleListEntry = ({ person }: TPersonEntry) => {
 				>
 					{formatDateToDDMMYYYY(person.dateOfBirth)}
 				</span>
-			</div>
-			<div>{person.jobTitle}</div>
-			<div>{person.country}</div>
-			<div
+			</p>
+			<p>{person.jobTitle}</p>
+			<p>{person.country}</p>
+			<p
 				style={{
 					fontWeight: 500,
 				}}
@@ -85,7 +85,7 @@ const PeopleListEntry = ({ person }: TPersonEntry) => {
 				>
 					per year
 				</span>
-			</div>
+			</p>
 			<Link href={`update/${person._id}`}>
 				<StyledButton>Edit</StyledButton>
 			</Link>
