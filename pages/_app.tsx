@@ -12,11 +12,6 @@ import Head from "next/head";
 import { PEOPLE_LIST_INITIAL } from "utils";
 import { Header } from "styles/layouts";
 
-/**
- * colors:
- * image thumbnail: #ffe8df
- */
-
 const GlobalStyles = createGlobalStyle`
 	:root {
 		--color-primary-accent: #624de3;
@@ -46,10 +41,6 @@ const GlobalStyles = createGlobalStyle`
 		min-height: 100%;
 	}
 
-	h1, h2, h3 {
-		margin: 20px 0 0 0;
-	}
-
 	a {
 	text-decoration: none;
 	color: var(--color-primary-accent);
@@ -62,20 +53,6 @@ const GlobalStyles = createGlobalStyle`
 			text-decoration: underline;
 		}
 	}
-
-	code, pre {
-		font-family: var(--font-family-code);
-	}
-
-	code {
-		color: var(--color-inlineCode-fg);
-		background-color: var(--color-inlineCode-bg);
-		font-size: 85%;
-		padding: 0.2em 0.4rem;
-		border-radius: 5px;
-		/* https://developer.mozilla.org/en-US/docs/Web/CSS/box-decoration-break */
-		box-decoration-break: clone;
-	}
 `;
 
 export type TPeopleContext = {
@@ -87,7 +64,9 @@ export const PeopleContext = createContext<TPeopleContext>(
 );
 
 const App = ({ Component, pageProps }: AppProps) => {
-	const [peopleList, setPeopleList] = useState(PEOPLE_LIST_INITIAL);
+	const [peopleList, setPeopleList] = useState<Array<TPeopleAttributes>>(
+		process.env.NODE_ENV === "development" ? PEOPLE_LIST_INITIAL : [],
+	);
 
 	return (
 		<Fragment>
