@@ -25,7 +25,7 @@ export const PEOPLE_LIST_INITIAL: Array<TPeopleAttributes> = [
 		country: "India",
 		dateOfBirth: new Date(1997, 5, 20),
 		jobTitle: "Software Developer",
-		salary: "5000000",
+		salary: "50000",
 	},
 	{
 		_id: "asd002",
@@ -33,7 +33,7 @@ export const PEOPLE_LIST_INITIAL: Array<TPeopleAttributes> = [
 		country: "India",
 		dateOfBirth: new Date(1996, 6, 1),
 		jobTitle: "Investigative Journalist",
-		salary: 77777,
+		salary: 777777,
 	},
 ];
 

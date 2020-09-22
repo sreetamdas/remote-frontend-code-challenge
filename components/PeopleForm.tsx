@@ -97,12 +97,14 @@ export const PeopleForm = ({ person }: TPeopleFormProps) => {
 				</PeopleFormInputGroup>
 				<PeopleFormInputGroup name="Birthdate" hint="DD/MM/YYYY">
 					<PeopleFormDateInput
-						value={
-							formatDateToYYYYMMDD(personDetails.dateOfBirth) ??
-							""
-						}
+						value={formatDateToYYYYMMDD(personDetails.dateOfBirth)}
 						onChange={(ev) => handleChange(ev, "dateOfBirth")}
 						max={new Date().toISOString().split("T")[0]}
+						style={{
+							color: personDetails.dateOfBirth
+								? "var(--color-text-main)"
+								: "var(--color-text-soft)",
+						}}
 					/>
 				</PeopleFormInputGroup>
 				<PeopleFormInputGroup
@@ -120,8 +122,13 @@ export const PeopleForm = ({ person }: TPeopleFormProps) => {
 					hint="Where are they based?"
 				>
 					<PeopleFormSelectInput
-						value={personDetails.country ?? undefined}
+						value={personDetails.country}
 						onChange={(ev) => handleChange(ev, "country")}
+						style={{
+							color: personDetails.country
+								? "var(--color-text-main)"
+								: "var(--color-text-soft)",
+						}}
 					>
 						{!personDetails.country ? (
 							<option
