@@ -1,8 +1,17 @@
 export const createUserId = (): string =>
 	window.crypto.getRandomValues(new Uint32Array(10))[0].toString();
 
-export const formatDateToDDMMYYYY = (date: Date) =>
-	new Intl.DateTimeFormat("en-GB").format(date);
+export const formatDateToDDMMYYYY = (date: Date) => {
+	// prior to node 13.0.0, only en-US data is available
+	const dateinMMDDYYYY = new Intl.DateTimeFormat("en-US", {
+		day: "2-digit",
+		month: "2-digit",
+		year: "numeric"
+	}).format(date);
+	const [month, day, year] = dateinMMDDYYYY.split("/");
+
+	return `${day}/${month}/${year}`;
+};
 
 export const formatDateToYYYYMMDD = (date: Date) => {
 	const dateInDDMMYYYY = formatDateToDDMMYYYY(date);
