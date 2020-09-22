@@ -14,7 +14,7 @@ import {
 	PeopleFormTextInput,
 	PeopleFormDateInput,
 } from "styles/PeopleForm";
-import { COUNTRY_LIST, createUserId } from "utils";
+import { COUNTRY_LIST, createUserId, formatDateToYYYYMMDD } from "utils";
 
 export type TPeopleFormProps = {
 	person?: TPeopleAttributes;
@@ -29,16 +29,23 @@ export const PeopleForm = ({ person }: TPeopleFormProps) => {
 	const { setPeopleList } = useContext(PeopleContext);
 
 	useEffect(() => {
-		if (!!person) setIsEditingMode(true);
-	}, []);
+		if (!!person) {
+			setIsEditingMode(true);
+			setPersonDetails(person);
+		}
+	}, [person]);
 
 	const handleChange = (
-		event: ChangeEvent<HTMLInputElement>,
+		event: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
 		fieldName: keyof Omit<TPeopleAttributes, "_id">,
 	) => {
+		let value: any = event.target.value;
+		if (fieldName === "dateOfBirth") {
+			value = new Date(value);
+		}
 		const updatedDetails = {
 			...personDetails,
-			[fieldName]: event.target.value,
+			[fieldName]: value,
 		};
 		setPersonDetails(updatedDetails);
 	};
@@ -48,7 +55,6 @@ export const PeopleForm = ({ person }: TPeopleFormProps) => {
 			...(!isEditingMode && { _id: createUserId() }),
 		};
 
-		console.log({ personDetailsWithId });
 		setPeopleList((prevPeopleList) => {
 			if (!isEditingMode) prevPeopleList.push(personDetailsWithId);
 			else {
@@ -90,7 +96,14 @@ export const PeopleForm = ({ person }: TPeopleFormProps) => {
 					/>
 				</PeopleFormInputGroup>
 				<PeopleFormInputGroup name="Birthdate" hint="DD/MM/YYYY">
-					<PeopleFormDateInput />
+					<PeopleFormDateInput
+						value={
+							formatDateToYYYYMMDD(personDetails.dateOfBirth) ??
+							""
+						}
+						onChange={(ev) => handleChange(ev, "dateOfBirth")}
+						max={new Date().toISOString().split("T")[0]}
+					/>
 				</PeopleFormInputGroup>
 				<PeopleFormInputGroup
 					name="Job Title"
@@ -106,16 +119,21 @@ export const PeopleForm = ({ person }: TPeopleFormProps) => {
 					name="Country"
 					hint="Where are they based?"
 				>
-					<PeopleFormSelectInput>
-						<option
-							value=""
-							hidden
-							style={{
-								color: "var(--color-text-soft)",
-							}}
-						>
-							e.g. Portugal
-						</option>
+					<PeopleFormSelectInput
+						value={personDetails.country ?? undefined}
+						onChange={(ev) => handleChange(ev, "country")}
+					>
+						{!personDetails.country ? (
+							<option
+								value=""
+								hidden
+								style={{
+									color: "var(--color-text-soft)",
+								}}
+							>
+								e.g. Portugal
+							</option>
+						) : null}
 						{COUNTRY_LIST.map((country) => (
 							<option key={country} value={country}>
 								{country}
@@ -133,7 +151,9 @@ export const PeopleForm = ({ person }: TPeopleFormProps) => {
 			</PeopleFormMain>
 			<PeopleFormFooter>
 				<Link href="/">
-					<StyledButton>Cancel</StyledButton>
+					<StyledButton onClick={() => router.push("/")}>
+						Cancel
+					</StyledButton>
 				</Link>
 				<StyledButton primary onClick={handleSubmit}>
 					{isEditingMode ? "Save" : "Add employee"}

@@ -17,7 +17,7 @@ export const PeopleFormHeader = styled.div`
 export const PeopleFormFooter = styled.div`
 	padding: 32px 0;
 	display: grid;
-	grid-template-columns: repeat(2, minmax(150px, max-content));
+	grid-template-columns: repeat(2, max-content);
 	grid-gap: 1rem;
 	background: #f9faff;
 	border-radius: 10px;
@@ -60,12 +60,6 @@ export const PeopleFormDateInput = styled.input.attrs({ type: "date" })`
 	padding-top: 4px;
 	width: 100%;
 	border-bottom: #ced5db 1.5px solid;
-	color: var(--color-text-main);
-
-	::placeholder {
-		color: var(--color-text-soft);
-		/* opacity: 100%; */
-	}
 
 	&:focus {
 		outline: none;
@@ -80,7 +74,6 @@ export const PeopleFormSelectInput = styled.select`
 	cursor: pointer;
 	border: none;
 	appearance: none;
-	color: var(--color-text-soft);
 	border-bottom: #ced5db 1.5px solid;
 
 	/* background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACuklEQVR4nO3ZT2gUZxzG8c8a/1VRo43BVsSABqSCaEEUFD14ELx46KGHevBQPCiIoAcppSAU2oMgeiiFHESoUIqFQslBRBEJiErF/4JY1ICKKK34J2pR42E2NNXN5n1nZ3fT+H7hB8sy8zzPb3Zm9jfzkkgkEolEIpFIJBKJRGIISs0OkINCMk/HMTzGhiIEG8RG9OE4WvOKfIiz6C/Xa2yqPVvd2eLfzP34AzNiRdpx4S2hgdpWVNI6sEPlzOfQFiryES4PITRQXxWZugBK+Eb1zBdlP+ywDD7tq9W3RsbNsYTvhWU+HSJ4P1CsH3s09yCMwb4KuYaq2yGiK/AoQvTHcpBG04KuiJwPsTxUfCn+ihA/gLG19xTMWByMyPcAn8aaLMK9CJNfMD5/T8GMx68Rue5iYV6zBbLrJtTsd0zMaxbAB+iOyNOLzlpN5+FmhOkRTK7VtAKTcTQix5/oKMp8Dq5FmJ/A1KLMMQ09Ef5XMbtAfzALlyJCnJJjBK3ADJyJ8D0vcODJQ5vwQalfNoLOrMGvXdZQqN8ZxRz0qrTiZESoK/g4h89s2akc6tMju1QawhTZo2ZouOuYG6HfIbuJheofVZ8bb1Um4XBEyF7MD9DtLG8bqtst+3tsChPw2zABB9cdfFJFb6FscAnVO6Qxw1dVxuFn4aHvY3EFnSXiHsR+0tjxuyot2C88/N9YNmj/ZeXvQvfvKnuOKMbgB+FNPMYqrC5/Dt1vr5HxHqIiJewW3kxfuUK3/84Ibn6AEnYJbyq0vvY/aH4wOxXX/PYGZy+MrWpvfnPDUxfMl7I1hdjGX8kWOEYFX+Cl8OZf4vOmJK0jn+Efwzf/AuublLHurMNzQzf/DGublq5BrMFT7zb/RDYUvRes9N+1h6h39qOFpbiFG3K8s08kEolEIpFIJBKJRCKRyMsbiuRAkKLT0GgAAAAASUVORK5CYII=");
@@ -98,4 +91,8 @@ export const PeopleFormSelectInput = styled.select`
 		padding: 0;
 		color: var(--color-text-main);
 	}
+
+	/* & option:hidden {
+		color: var(--color-text-soft);
+	} */
 `;
