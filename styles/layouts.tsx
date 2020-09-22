@@ -19,6 +19,7 @@ export const PeopleListActionBar = styled.div`
 	display: grid;
 	grid-auto-flow: column;
 	justify-content: space-between;
+	align-items: center;
 	width: 100%;
 	padding: 30px 0;
 `;
@@ -32,7 +33,7 @@ export const PeopleListRowContainer = styled.div`
 	display: grid;
 	grid-auto-flow: column;
 	justify-content: space-between;
-	grid-template-columns: repeat(4, minmax(100px, 1.5fr)) 1fr;
+	grid-template-columns: repeat(2, minmax(100px, 2.5fr)) repeat(2, minmax(100px, 1.5fr)) minmax(100px, 1fr);
 	grid-gap: 1rem;
 `;
 
@@ -47,5 +48,6 @@ export const PeopleListEntryContainer = styled.div`
 export const PeopleListHeadingRow = styled.div`
 	padding: 0 20px;
 	text-transform: uppercase;
-	font-size: 0.7rem;
+	font-size: 12px;
+	color: var(--color-text-softer);
 `;

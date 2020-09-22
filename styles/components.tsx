@@ -7,9 +7,11 @@ type TStyledButtonProps = {
 };
 export const StyledButton = styled.button<TStyledButtonProps>`
 	cursor: pointer;
-	padding: 10px 30px;
-	min-width: 80px;
+	padding: 8px 30px 9px;
+	text-align: center;
+	box-sizing: border-box;
 	height: ${({ size }) => (size === "large" ? "45px" : "40px")};
+	line-height: 19px;
 	border-radius: 50px;
 	font-size: 16px;
 	color: ${({ primary }) =>
