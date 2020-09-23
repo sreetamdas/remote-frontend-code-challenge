@@ -221,7 +221,7 @@ const FormCaptureFocus = styled.div`
 export type TAlertProps = { message?: string; onClose?: () => void; visible: boolean };
 const Alert = ({ message, visible, onClose }: TAlertProps) => (
 	<AlertWrapper {...{ message, visible }}>
-		<p>{message ?? "Error!"}</p>
+		<p {...(visible && { "data-testid": "people-form-error-alert" })}>{message}</p>
 		<span style={{ fontSize: "18px", cursor: "pointer" }} onClick={onClose}>
 			&times;
 		</span>

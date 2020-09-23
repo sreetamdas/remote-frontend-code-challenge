@@ -30,11 +30,10 @@ describe("create person", () => {
 			salary: "40000",
 		};
 
-		const wrapper = customTestingRender(<PeopleForm />, {
+		const { getByTestId } = customTestingRender(<PeopleForm />, {
 			peopleList: [],
 			setPeopleList: mockSetPeopleList,
 		});
-		const { getByTestId } = wrapper;
 
 		const inputName = getByTestId("people-form-input-name") as HTMLInputElement;
 		const inputCountry = getByTestId("people-form-input-country") as HTMLSelectElement;
