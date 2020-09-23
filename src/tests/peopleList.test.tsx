@@ -1,23 +1,6 @@
 import React from "react";
 import Home from "pages";
-import { PeopleContext, TPeopleContext } from "pages/_app";
-import { PEOPLE_LIST_INITIAL } from "utils";
-import { render } from "@testing-library/react";
-
-const customTestingRender = (
-	element: JSX.Element,
-	providerProps?: TPeopleContext,
-) => {
-	const peopleList = PEOPLE_LIST_INITIAL;
-	const setPeopleList = jest.fn();
-	return render(
-		<PeopleContext.Provider
-			value={providerProps ?? { peopleList, setPeopleList }}
-		>
-			{element}
-		</PeopleContext.Provider>,
-	);
-};
+import { customTestingRender, PEOPLE_LIST_INITIAL } from "utils";
 
 describe("renders people list - employee count correctly", () => {
 	test("employee count is correct with count 2", () => {

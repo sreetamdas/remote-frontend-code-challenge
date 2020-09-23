@@ -45,7 +45,10 @@ const Home = () => {
 				{peopleList.length ? (
 					<PeopleList />
 				) : (
-					<div style={{ color: "var(--color-text-soft)" }}>
+					<div
+						style={{ color: "var(--color-text-soft)" }}
+						data-testid="no-data-available"
+					>
 						No data available yet!
 					</div>
 				)}

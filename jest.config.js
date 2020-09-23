@@ -1,12 +1,11 @@
 module.exports = {
 	clearMocks: true,
-	coverageDirectory: "coverage",
+	verbose: true,
+	coverageDirectory: "src/tests/coverage",
 	roots: ["<rootDir>/src"],
 	moduleDirectories: ["src", "node_modules"],
-	testMatch: [
-		"**/__tests__/**/*.+(ts|tsx|js)",
-		"**/?(*.)+(spec|test).+(ts|tsx|js)",
-	],
+	setupFilesAfterEnv: ["<rootDir>/src/tests/setupTests.ts"],
+	testMatch: ["**/__tests__/**/*.+(ts|tsx|js)", "**/?(*.)+(spec|test).+(ts|tsx|js)"],
 	transform: {
 		"^.+\\.(ts|tsx)$": "ts-jest",
 	},

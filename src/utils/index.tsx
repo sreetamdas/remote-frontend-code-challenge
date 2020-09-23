@@ -1,3 +1,7 @@
+import React from "react";
+import { render } from "@testing-library/react";
+import { TPeopleContext, PeopleContext } from "pages/_app";
+
 export const createUserId = (): string =>
 	window.crypto.getRandomValues(new Uint32Array(10))[0].toString();
 
@@ -25,6 +29,24 @@ export const formatSalaryToLocaleString = (amount: string | number): string => {
 		amount = parseInt(amount);
 	}
 	return amount.toLocaleString();
+};
+
+export const customTestingRender = (
+	element: JSX.Element,
+	providerProps = {} as Partial<TPeopleContext>,
+) => {
+	const mockedPeopleList = PEOPLE_LIST_INITIAL;
+	const mockedSetPeopleList = jest.fn();
+
+	const {
+		peopleList = mockedPeopleList,
+		setPeopleList = mockedSetPeopleList,
+	} = providerProps;
+	return render(
+		<PeopleContext.Provider value={{ peopleList, setPeopleList }}>
+			{element}
+		</PeopleContext.Provider>,
+	);
 };
 
 export const PEOPLE_LIST_INITIAL: Array<TPeopleAttributes> = [
