@@ -3,6 +3,6 @@ declare type TPeopleAttributes = {
 	name: string;
 	dateOfBirth: Date;
 	jobTitle: string;
-	country: Country;
+	country: string;
 	salary: string | number;
 };

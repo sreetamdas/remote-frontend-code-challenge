@@ -1,3 +1,4 @@
+import { TAlertProps } from "components/PeopleForm";
 import styled from "styled-components";
 
 export const PeopleFormContainer = styled.div`
@@ -95,4 +96,27 @@ export const PeopleFormSelectInput = styled.select`
 	/* & option:hidden {
 		color: var(--color-text-soft);
 	} */
+`;
+
+export const AlertWrapper = styled.div<TAlertProps>`
+	position: fixed;
+	top: 80px;
+	left: 50%;
+
+	display: grid;
+	grid-template-columns: auto 1fr;
+	grid-gap: 2rem;
+	align-items: center;
+
+	padding: 10px 20px;
+	border-radius: 5px;
+	font-size: 14px;
+	border: 1px solid rgba(255, 0, 0, 0.2);
+	background: rgb(255, 240, 240);
+	color: rgba(180, 0, 0, 0.8);
+
+	transform: translate(-50%, ${({ visible }) => (visible ? "0" : "-80px")});
+	opacity: ${({ visible }) => (visible ? "100%" : "0")};
+	visibility: ${({ visible }) => (visible ? "visible" : "hidden")};
+	transition: transform 0.25s ease-in-out, opacity 0.25s ease-in-out, visibility 0.25s ease-in-out;
 `;

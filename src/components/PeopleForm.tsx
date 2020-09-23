@@ -13,8 +13,9 @@ import {
 	PeopleFormSelectInput,
 	PeopleFormTextInput,
 	PeopleFormDateInput,
+	AlertWrapper,
 } from "styles/PeopleForm";
-import { COUNTRY_LIST, createUserId, formatDateToYYYYMMDD } from "utils";
+import { checkIfAllFieldsAreFilled, COUNTRY_LIST, createUserId, formatDateToYYYYMMDD } from "utils";
 
 export type TPeopleFormProps = {
 	person?: TPeopleAttributes;
@@ -22,6 +23,7 @@ export type TPeopleFormProps = {
 export const PeopleForm = ({ person }: TPeopleFormProps) => {
 	const router = useRouter();
 	const [isEditingMode, setIsEditingMode] = useState(false);
+	const [hasError, setHasError] = useState<boolean>(false);
 	// may or may not have _id
 	const [personDetails, setPersonDetails] = useState<TPeopleAttributes>(
 		person ?? ({} as TPeopleAttributes),
@@ -54,6 +56,11 @@ export const PeopleForm = ({ person }: TPeopleFormProps) => {
 			...personDetails,
 			...(!isEditingMode && { _id: createUserId() }),
 		};
+		if (!checkIfAllFieldsAreFilled(personDetailsWithId)) {
+			setHasError(true);
+			return;
+		}
+
 		const updatedList = [...peopleList];
 		if (!isEditingMode) updatedList.push(personDetailsWithId);
 		else {
@@ -67,6 +74,11 @@ export const PeopleForm = ({ person }: TPeopleFormProps) => {
 
 	return (
 		<PeopleFormContainer>
+			<Alert
+				visible={hasError}
+				message={"Please fill all fields"}
+				onClose={() => setHasError(false)}
+			/>
 			<PeopleFormHeader>
 				{isEditingMode ? "Edit employee" : "Add a new employee"}
 				<br />
@@ -205,3 +217,13 @@ const FormCaptureFocus = styled.div`
 		color: var(--color-primary-accent);
 	}
 `;
+
+export type TAlertProps = { message?: string; onClose?: () => void; visible: boolean };
+const Alert = ({ message, visible, onClose }: TAlertProps) => (
+	<AlertWrapper {...{ message, visible }}>
+		<p>{message ?? "Error!"}</p>
+		<span style={{ fontSize: "18px", cursor: "pointer" }} onClick={onClose}>
+			&times;
+		</span>
+	</AlertWrapper>
+);

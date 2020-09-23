@@ -5,7 +5,7 @@ module.exports = {
 	roots: ["<rootDir>/src"],
 	moduleDirectories: ["src", "node_modules"],
 	setupFilesAfterEnv: ["<rootDir>/src/tests/setupTests.ts"],
-	testMatch: ["**/__tests__/**/*.+(ts|tsx|js)", "**/?(*.)+(spec|test).+(ts|tsx|js)"],
+	testMatch: ["**/?(*.)+(test).+(ts|tsx)"],
 	transform: {
 		"^.+\\.(ts|tsx)$": "ts-jest",
 	},

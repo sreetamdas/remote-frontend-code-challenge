@@ -38,14 +38,25 @@ export const customTestingRender = (
 	const mockedPeopleList = PEOPLE_LIST_INITIAL;
 	const mockedSetPeopleList = jest.fn();
 
-	const {
-		peopleList = mockedPeopleList,
-		setPeopleList = mockedSetPeopleList,
-	} = providerProps;
+	const { peopleList = mockedPeopleList, setPeopleList = mockedSetPeopleList } = providerProps;
 	return render(
 		<PeopleContext.Provider value={{ peopleList, setPeopleList }}>
 			{element}
 		</PeopleContext.Provider>,
+	);
+};
+
+export const checkIfValueIsUsable = (input?: string | number | Date, isDate = false): boolean => {
+	if (input === undefined) return false;
+	if (typeof input === "string" && input.length > 0) return true;
+	if (isDate && input instanceof Date) return true;
+	return false;
+};
+
+export const checkIfAllFieldsAreFilled = (person: TPeopleAttributes) => {
+	const fieldNames = Object.keys(PEOPLE_LIST_INITIAL[0]) as Array<keyof TPeopleAttributes>;
+	return fieldNames.every(
+		(field) => field in person && checkIfValueIsUsable(person[field], field === "dateOfBirth"),
 	);
 };
 
