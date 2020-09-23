@@ -26,7 +26,7 @@ export const PeopleForm = ({ person }: TPeopleFormProps) => {
 	const [personDetails, setPersonDetails] = useState<TPeopleAttributes>(
 		person ?? ({} as TPeopleAttributes),
 	);
-	const { setPeopleList } = useContext(PeopleContext);
+	const { peopleList, setPeopleList } = useContext(PeopleContext);
 
 	useEffect(() => {
 		if (!!person) {
@@ -54,18 +54,14 @@ export const PeopleForm = ({ person }: TPeopleFormProps) => {
 			...personDetails,
 			...(!isEditingMode && { _id: createUserId() }),
 		};
+		const updatedList = [...peopleList];
+		if (!isEditingMode) updatedList.push(personDetailsWithId);
+		else {
+			const index = updatedList.findIndex((info) => info._id === person?._id);
+			updatedList.splice(index, 1, personDetailsWithId);
+		}
 
-		setPeopleList((prevPeopleList) => {
-			if (!isEditingMode) prevPeopleList.push(personDetailsWithId);
-			else {
-				const index = prevPeopleList.findIndex(
-					(info) => info._id === person?._id,
-				);
-				prevPeopleList.splice(index, 1, personDetailsWithId);
-			}
-
-			return prevPeopleList;
-		});
+		setPeopleList(updatedList);
 		router.push("/");
 	};
 
@@ -93,34 +89,31 @@ export const PeopleForm = ({ person }: TPeopleFormProps) => {
 						placeholder="e.g. Jane Doe"
 						value={personDetails.name ?? ""}
 						onChange={(ev) => handleChange(ev, "name")}
+						data-testid="people-form-input-name"
 					/>
 				</PeopleFormInputGroup>
 				<PeopleFormInputGroup name="Birthdate" hint="DD/MM/YYYY">
 					<PeopleFormDateInput
 						value={formatDateToYYYYMMDD(personDetails.dateOfBirth)}
 						onChange={(ev) => handleChange(ev, "dateOfBirth")}
-						max={new Date().toISOString().split("T")[0]}
+						max={formatDateToYYYYMMDD(new Date())}
 						style={{
 							color: personDetails.dateOfBirth
 								? "var(--color-text-main)"
 								: "var(--color-text-soft)",
 						}}
+						data-testid="people-form-input-dateOfBirth"
 					/>
 				</PeopleFormInputGroup>
-				<PeopleFormInputGroup
-					name="Job Title"
-					hint="What is their role?"
-				>
+				<PeopleFormInputGroup name="Job Title" hint="What is their role?">
 					<PeopleFormTextInput
 						placeholder="e.g. Product Manager"
 						value={personDetails.jobTitle ?? ""}
 						onChange={(ev) => handleChange(ev, "jobTitle")}
+						data-testid="people-form-input-jobTitle"
 					/>
 				</PeopleFormInputGroup>
-				<PeopleFormInputGroup
-					name="Country"
-					hint="Where are they based?"
-				>
+				<PeopleFormInputGroup name="Country" hint="Where are they based?">
 					<PeopleFormSelectInput
 						value={personDetails.country}
 						onChange={(ev) => handleChange(ev, "country")}
@@ -129,6 +122,7 @@ export const PeopleForm = ({ person }: TPeopleFormProps) => {
 								? "var(--color-text-main)"
 								: "var(--color-text-soft)",
 						}}
+						data-testid="people-form-input-country"
 					>
 						{!personDetails.country ? (
 							<option
@@ -153,16 +147,24 @@ export const PeopleForm = ({ person }: TPeopleFormProps) => {
 						placeholder="e.g. 50000"
 						value={personDetails.salary ?? ""}
 						onChange={(ev) => handleChange(ev, "salary")}
+						data-testid="people-form-input-salary"
 					/>
 				</PeopleFormInputGroup>
 			</PeopleFormMain>
 			<PeopleFormFooter>
 				<Link href="/">
-					<StyledButton onClick={() => router.push("/")}>
+					<StyledButton
+						onClick={() => router.push("/")}
+						data-testid="people-form-cancel-button"
+					>
 						Cancel
 					</StyledButton>
 				</Link>
-				<StyledButton primary onClick={handleSubmit}>
+				<StyledButton
+					primary
+					onClick={handleSubmit}
+					data-testid="people-form-submit-button"
+				>
 					{isEditingMode ? "Save" : "Add employee"}
 				</StyledButton>
 			</PeopleFormFooter>
@@ -175,11 +177,7 @@ type TInputFormGroupProps = {
 	children: JSX.Element;
 	hint: string;
 };
-const PeopleFormInputGroup = ({
-	name,
-	hint,
-	children,
-}: TInputFormGroupProps) => {
+const PeopleFormInputGroup = ({ name, hint, children }: TInputFormGroupProps) => {
 	return (
 		<div style={{ fontSize: "13px", color: "var(--color-text-softer)" }}>
 			<FormCaptureFocus>
