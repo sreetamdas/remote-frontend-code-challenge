@@ -23,14 +23,15 @@ export type TPeopleFormProps = {
 export const PeopleForm = ({ person }: TPeopleFormProps) => {
 	const router = useRouter();
 	const [isEditingMode, setIsEditingMode] = useState(false);
-	const [hasError, setHasError] = useState<boolean>(false);
-	// may or may not have _id
+	const [hasError, setHasError] = useState(false);
+
 	const [personDetails, setPersonDetails] = useState<TPeopleAttributes>(
 		person ?? ({} as TPeopleAttributes),
 	);
 	const { peopleList, setPeopleList } = useContext(PeopleContext);
 
 	useEffect(() => {
+		// bang! bang! you're now a boolean
 		if (!!person) {
 			setIsEditingMode(true);
 			setPersonDetails(person);
@@ -39,10 +40,12 @@ export const PeopleForm = ({ person }: TPeopleFormProps) => {
 
 	const handleChange = (
 		event: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+		// we need to add an `_id`
 		fieldName: keyof Omit<TPeopleAttributes, "_id">,
 	) => {
-		let value: any = event.target.value;
+		let value: string | Date = event.target.value;
 		if (fieldName === "dateOfBirth") {
+			// we're saving dateOfBirth as a `Date`
 			value = new Date(value);
 		}
 		const updatedDetails = {
@@ -51,9 +54,11 @@ export const PeopleForm = ({ person }: TPeopleFormProps) => {
 		};
 		setPersonDetails(updatedDetails);
 	};
-	const handleSubmit = () => {
+	const handleSubmit = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+		event.preventDefault();
 		const personDetailsWithId: TPeopleAttributes = {
 			...personDetails,
+			// if we are adding a person, we need to createa and add an `_id`
 			...(!isEditingMode && { _id: createUserId() }),
 		};
 		if (!checkIfAllFieldsAreFilled(personDetailsWithId)) {
@@ -98,6 +103,7 @@ export const PeopleForm = ({ person }: TPeopleFormProps) => {
 			<PeopleFormMain>
 				<PeopleFormInputGroup name="Name" hint="First and last names">
 					<PeopleFormTextInput
+						required
 						placeholder="e.g. Jane Doe"
 						value={personDetails.name ?? ""}
 						onChange={(ev) => handleChange(ev, "name")}
@@ -106,10 +112,10 @@ export const PeopleForm = ({ person }: TPeopleFormProps) => {
 				</PeopleFormInputGroup>
 				<PeopleFormInputGroup name="Birthdate" hint="DD/MM/YYYY">
 					<PeopleFormDateInput
+						required
 						value={formatDateToYYYYMMDD(personDetails.dateOfBirth)}
 						onChange={(ev) => handleChange(ev, "dateOfBirth")}
 						max={formatDateToYYYYMMDD(new Date())}
-						required
 						style={{
 							color: personDetails.dateOfBirth
 								? "var(--color-text-main)"
@@ -120,6 +126,7 @@ export const PeopleForm = ({ person }: TPeopleFormProps) => {
 				</PeopleFormInputGroup>
 				<PeopleFormInputGroup name="Job Title" hint="What is their role?">
 					<PeopleFormTextInput
+						required
 						placeholder="e.g. Product Manager"
 						value={personDetails.jobTitle ?? ""}
 						onChange={(ev) => handleChange(ev, "jobTitle")}
@@ -128,6 +135,7 @@ export const PeopleForm = ({ person }: TPeopleFormProps) => {
 				</PeopleFormInputGroup>
 				<PeopleFormInputGroup name="Country" hint="Where are they based?" isSelect>
 					<PeopleFormSelectInput
+						required
 						value={personDetails.country}
 						onChange={(ev) => handleChange(ev, "country")}
 						style={{
@@ -157,6 +165,7 @@ export const PeopleForm = ({ person }: TPeopleFormProps) => {
 				</PeopleFormInputGroup>
 				<PeopleFormInputGroup name="Salary" hint="Gross yearly salary">
 					<PeopleFormTextInput
+						required
 						placeholder="e.g. 50000"
 						value={personDetails.salary ?? ""}
 						onChange={(ev) => handleChange(ev, "salary")}
@@ -194,6 +203,7 @@ type TInputFormGroupProps = {
 const PeopleFormInputGroup = ({ name, hint, children, isSelect }: TInputFormGroupProps) => {
 	return (
 		<div style={{ fontSize: "13px", color: "var(--color-text-softer)" }}>
+			{/* for select input, in order to add the custom icon for the dropdown */}
 			<FormCaptureFocus isSelect={isSelect}>
 				<label>
 					{name}
@@ -217,6 +227,7 @@ const PeopleFormInputGroup = ({ name, hint, children, isSelect }: TInputFormGrou
 export type TAlertProps = { message?: string; onClose?: () => void; visible: boolean };
 const Alert = ({ message, visible, onClose }: TAlertProps) => (
 	<AlertWrapper {...{ message, visible }}>
+		{/* to test whether the error alert is shown correctly */}
 		<p {...(visible && { "data-testid": "people-form-error-alert" })}>{message}</p>
 		<span style={{ fontSize: "18px", cursor: "pointer" }} onClick={onClose}>
 			&times;
