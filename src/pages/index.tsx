@@ -29,9 +29,7 @@ const Home = () => {
 						>
 							{peopleList.length
 								? `${peopleList.length} ${
-										peopleList.length === 1
-											? "employee"
-											: "employees"
+										peopleList.length === 1 ? "employee" : "employees"
 								  }`
 								: "No employees"}
 						</span>
@@ -49,7 +47,7 @@ const Home = () => {
 						style={{ color: "var(--color-text-soft)" }}
 						data-testid="no-data-available"
 					>
-						No data available yet!
+						No data available
 					</div>
 				)}
 			</GridContainer>
