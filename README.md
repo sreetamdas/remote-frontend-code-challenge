@@ -10,14 +10,6 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 and that's it! as requested, there's no prebuilt CSS/libraries being used.
 
-#### todo:
-
--   [ ] use localforage for "saving" data
--   [ ] add icon to Add employee button
--   [ ] add down-arrow icon to select field in form
--   [ ] use cypress for end-to-end tests
--   [ ] setup and use GitHub Actions
-
 ## Setup
 
 ```sh
@@ -69,3 +61,11 @@ yarn compile
 ### Known issues
 
 -   **accessibility**: lighthouse scores for accessibility hover around 93, and the only issues is the contrast between the `background-color` and `color` of the text. I wanted to stick to the provided design as much as possible, but since we're using [CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) we can quickly modify this to improve accessibility
+
+#### todos:
+
+-   [ ] ~use localforage for "saving" data~
+-   [x] add icon to Add employee button
+-   [x] add down-arrow icon to select field in form
+-   [x] setup and use GitHub Actions
+-   [ ] use cypress for end-to-end tests
