@@ -3,31 +3,37 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 
 import { GridContainer } from "styles/layouts";
-import { PeopleContext } from "pages/_app";
 import { PeopleForm } from "components/PeopleForm";
+import { PeopleContext } from "pages/_app";
+import Custom404 from "pages/404";
 
 const UpdateRecord = () => {
 	const router = useRouter();
 	const { id } = router.query;
 	const { peopleList } = useContext(PeopleContext);
-	const [currentPerson, setCurrentPerson] = useState(
-		peopleList.find((person) => person._id === id),
-	);
+	const [currentPerson, setCurrentPerson] = useState<TPeopleAttributes>();
 
 	useEffect(() => {
-		setCurrentPerson(peopleList.find((person) => person._id === id));
+		const person = peopleList.find((person) => person._id === id);
+		if (person !== undefined) setCurrentPerson(person);
 	}, [id]);
 
-	return (
+	/**
+	 * if the person doesn't exist, we show the 404 error page;
+	 * this would happen when the user enters the wrong URL
+	 */
+	return currentPerson ? (
 		<Fragment>
 			<Head>
-				<title>Edit Person</title>
+				<title>Edit person</title>
 			</Head>
 
 			<GridContainer>
 				<PeopleForm person={currentPerson} />
 			</GridContainer>
 		</Fragment>
+	) : (
+		<Custom404 />
 	);
 };
 
