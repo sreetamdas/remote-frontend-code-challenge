@@ -13,7 +13,7 @@ export const Custom404 = () => {
 			</Head>
 			<GridContainer>
 				<ReallyBigTitle>404!</ReallyBigTitle>
-				<h1>Page not found</h1>
+				<h1 data-testid="404-error-page">Page not found</h1>
 				<Link href="/">Go back home</Link>
 			</GridContainer>
 		</Fragment>
