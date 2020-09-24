@@ -2,7 +2,6 @@ import React, { ChangeEvent, useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { PeopleContext } from "pages/_app";
-import styled from "styled-components";
 
 import { StyledButton } from "styles/components";
 import {
@@ -14,6 +13,7 @@ import {
 	PeopleFormTextInput,
 	PeopleFormDateInput,
 	AlertWrapper,
+	FormCaptureFocus,
 } from "styles/PeopleForm";
 import { checkIfAllFieldsAreFilled, COUNTRY_LIST, createUserId, formatDateToYYYYMMDD } from "utils";
 
@@ -109,6 +109,7 @@ export const PeopleForm = ({ person }: TPeopleFormProps) => {
 						value={formatDateToYYYYMMDD(personDetails.dateOfBirth)}
 						onChange={(ev) => handleChange(ev, "dateOfBirth")}
 						max={formatDateToYYYYMMDD(new Date())}
+						required
 						style={{
 							color: personDetails.dateOfBirth
 								? "var(--color-text-main)"
@@ -125,7 +126,7 @@ export const PeopleForm = ({ person }: TPeopleFormProps) => {
 						data-testid="people-form-input-jobTitle"
 					/>
 				</PeopleFormInputGroup>
-				<PeopleFormInputGroup name="Country" hint="Where are they based?">
+				<PeopleFormInputGroup name="Country" hint="Where are they based?" isSelect>
 					<PeopleFormSelectInput
 						value={personDetails.country}
 						onChange={(ev) => handleChange(ev, "country")}
@@ -188,11 +189,12 @@ type TInputFormGroupProps = {
 	name: string;
 	children: JSX.Element;
 	hint: string;
+	isSelect?: boolean;
 };
-const PeopleFormInputGroup = ({ name, hint, children }: TInputFormGroupProps) => {
+const PeopleFormInputGroup = ({ name, hint, children, isSelect }: TInputFormGroupProps) => {
 	return (
 		<div style={{ fontSize: "13px", color: "var(--color-text-softer)" }}>
-			<FormCaptureFocus>
+			<FormCaptureFocus isSelect={isSelect}>
 				<label>
 					{name}
 					<br />
@@ -211,12 +213,6 @@ const PeopleFormInputGroup = ({ name, hint, children }: TInputFormGroupProps) =>
 		</div>
 	);
 };
-
-const FormCaptureFocus = styled.div`
-	&:focus-within {
-		color: var(--color-primary-accent);
-	}
-`;
 
 export type TAlertProps = { message?: string; onClose?: () => void; visible: boolean };
 const Alert = ({ message, visible, onClose }: TAlertProps) => (

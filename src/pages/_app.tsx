@@ -1,10 +1,4 @@
-import React, {
-	createContext,
-	Dispatch,
-	Fragment,
-	SetStateAction,
-	useState,
-} from "react";
+import React, { createContext, Dispatch, Fragment, SetStateAction, useState } from "react";
 import { AppProps } from "next/app";
 
 import { createGlobalStyle } from "styled-components";
@@ -63,9 +57,7 @@ export type TPeopleContext = {
 	peopleList: Array<TPeopleAttributes>;
 	setPeopleList: Dispatch<SetStateAction<Array<TPeopleAttributes>>>;
 };
-export const PeopleContext = createContext<TPeopleContext>(
-	{} as TPeopleContext,
-);
+export const PeopleContext = createContext<TPeopleContext>({} as TPeopleContext);
 
 const App = ({ Component, pageProps }: AppProps) => {
 	const [peopleList, setPeopleList] = useState<Array<TPeopleAttributes>>(
@@ -75,10 +67,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 	return (
 		<Fragment>
 			<Head>
-				<meta
-					name="viewport"
-					content="initial-scale=1.0, width=device-width"
-				/>
+				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 			</Head>
 			<GlobalStyles />
 			<PeopleContext.Provider value={{ peopleList, setPeopleList }}>

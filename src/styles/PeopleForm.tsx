@@ -66,6 +66,10 @@ export const PeopleFormDateInput = styled.input.attrs({ type: "date" })`
 		outline: none;
 		border-bottom: var(--color-primary-accent) 1.5px solid;
 	}
+	&::-webkit-calendar-picker-indicator {
+		display: none;
+		-webkit-appearance: none;
+	}
 `;
 
 export const PeopleFormSelectInput = styled.select`
@@ -77,11 +81,6 @@ export const PeopleFormSelectInput = styled.select`
 	appearance: none;
 	border-bottom: #ced5db 1.5px solid;
 
-	/* background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACuklEQVR4nO3ZT2gUZxzG8c8a/1VRo43BVsSABqSCaEEUFD14ELx46KGHevBQPCiIoAcppSAU2oMgeiiFHESoUIqFQslBRBEJiErF/4JY1ICKKK34J2pR42E2NNXN5n1nZ3fT+H7hB8sy8zzPb3Zm9jfzkkgkEolEIpFIJBKJRGIISs0OkINCMk/HMTzGhiIEG8RG9OE4WvOKfIiz6C/Xa2yqPVvd2eLfzP34AzNiRdpx4S2hgdpWVNI6sEPlzOfQFiryES4PITRQXxWZugBK+Eb1zBdlP+ywDD7tq9W3RsbNsYTvhWU+HSJ4P1CsH3s09yCMwb4KuYaq2yGiK/AoQvTHcpBG04KuiJwPsTxUfCn+ihA/gLG19xTMWByMyPcAn8aaLMK9CJNfMD5/T8GMx68Rue5iYV6zBbLrJtTsd0zMaxbAB+iOyNOLzlpN5+FmhOkRTK7VtAKTcTQix5/oKMp8Dq5FmJ/A1KLMMQ09Ef5XMbtAfzALlyJCnJJjBK3ADJyJ8D0vcODJQ5vwQalfNoLOrMGvXdZQqN8ZxRz0qrTiZESoK/g4h89s2akc6tMju1QawhTZo2ZouOuYG6HfIbuJheofVZ8bb1Um4XBEyF7MD9DtLG8bqtst+3tsChPw2zABB9cdfFJFb6FscAnVO6Qxw1dVxuFn4aHvY3EFnSXiHsR+0tjxuyot2C88/N9YNmj/ZeXvQvfvKnuOKMbgB+FNPMYqrC5/Dt1vr5HxHqIiJewW3kxfuUK3/84Ibn6AEnYJbyq0vvY/aH4wOxXX/PYGZy+MrWpvfnPDUxfMl7I1hdjGX8kWOEYFX+Cl8OZf4vOmJK0jn+Efwzf/AuublLHurMNzQzf/DGublq5BrMFT7zb/RDYUvRes9N+1h6h39qOFpbiFG3K8s08kEolEIpFIJBKJRCKRyMsbiuRAkKLT0GgAAAAASUVORK5CYII=");
-	background-repeat: no-repeat;
-	background-position: right 0.5rem center;
-	background-size: 16px; */
-
 	&:focus {
 		outline: none;
 		border-bottom: var(--color-primary-accent) 1.5px solid;
@@ -92,10 +91,25 @@ export const PeopleFormSelectInput = styled.select`
 		padding: 0;
 		color: var(--color-text-main);
 	}
+`;
 
-	/* & option:hidden {
-		color: var(--color-text-soft);
-	} */
+export const FormCaptureFocus = styled.div<{ isSelect?: boolean }>`
+	&:focus-within {
+		color: var(--color-primary-accent);
+	}
+	position: relative;
+
+	${({ isSelect }) =>
+		isSelect &&
+		`
+	&:after {
+		position: absolute;
+		font-size: 18px;
+		transform: rotate(180deg);
+		right: 10px;
+		content:"⌃";
+	}
+`}
 `;
 
 export const AlertWrapper = styled.div<TAlertProps>`
