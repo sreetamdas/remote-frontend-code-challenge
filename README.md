@@ -1,6 +1,7 @@
 # Sreetam Das' solution to the Remote frontend code challenge
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app), with the following stack:
+This is a [Next.js](https://nextjs.org/) project bootstrapped with
+[`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app), with the following stack:
 
 -   React + Next.js
 -   TypeScript
@@ -8,7 +9,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 -   Jest + React Testing Library
 -   Node `v10.19.0`
 
-and that's it! as requested, there's no prebuilt CSS/libraries being used.
+and that's it! as requested, there's no prebuilt CSS/libraries being used; in fact, just about
+everything has been coded without using third-party libraries/packages.
 
 ## Setup
 
@@ -43,24 +45,41 @@ yarn compile
 
 ### Technical decisions
 
--   **Next.js**: the challenge description mentioned that I could use whatever tools I wanted, and Next.js was mentioned as an experience bonus in the job post.
-    Next.js also allows you to focus on the actual code, and not have to add the boilerplate for things like (but not limited to): [Webpack](https://webpack.js.org), [Babel](https://babeljs.io), server-side rendering, etc.
+-   **Next.js**: the challenge description mentioned that I could use whatever tools I wanted,
+    and Next.js was mentioned as an experience bonus in the job post.
+    Next.js also allows you to focus on the actual code, and not have to add the boilerplate for
+    things like (but not limited to): [Webpack](https://webpack.js.org), [Babel](https://babeljs.io),
+    server-side rendering, etc.
 
 -   **State management**: `Redux` would be _way_ overkill, and `useState` would lead to passing around props.
 
     `React.Context` fits this use case perfectly!
 
--   **CSS**: `styled-components` have been used _almost_ everywhere, with inline styles sprinkled in where a styled component wasn't really justified
+-   **CSS**: `styled-components` have been used _almost_ everywhere, with inline styles sprinkled in
+    where a styled component wasn't really justified
 
--   **Form state**: using a library like [formik](https://github.com/formium/formik) or [react-hook-form](https://github.com/react-hook-form/react-hook-form) was tempting but I wanted to code from scratch as much as possible
+-   **Form state**: using a library like [formik](https://github.com/formium/formik) or
+    [react-hook-form](https://github.com/react-hook-form/react-hook-form) was tempting but I wanted to
+    code from scratch as much as possible
 
--   **TypeScript**: using TS allows the codebase to be scalable much more easily, especially when one is working in collaboration with other contributors. Plus, it's always nice to have it catch errors that might otherwise be easily overlooked
+-   **TypeScript**: using TS allows the codebase to be scalable much more easily, especially when
+    one is working in collaboration with other contributors. Plus, it's always nice to have it catch
+    errors that might otherwise be easily overlooked
 
--   **crypto**: using cryptographically secure `id`s is a nice way to highlight the problems with `Math.random()`, and I didn't want to resort to installing a package solely for creating a 10 digit random number. Plus, it gave me a reason to add a `setupTests.ts` file for `jest`
+-   **crypto**: using cryptographically secure `id`s is a nice way to highlight the problems with `Math.random()`,
+    and I didn't want to resort to installing a package solely for creating a 10 digit random number. Plus,
+    it gave me a reason to add a `setupTests.ts` file for `jest`
 
 ### Known issues
 
--   **accessibility**: lighthouse scores for accessibility hover around 93, and the only issues is the contrast between the `background-color` and `color` of the text. I wanted to stick to the provided design as much as possible, but since we're using [CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) we can quickly modify this to improve accessibility
+-   **accessibility**: lighthouse scores for accessibility hover around 93, and the only issues is the
+    contrast between the `background-color` and `color` of the text. I wanted to stick to the provided design
+    as much as possible, but since we're using [CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*)
+    we can quickly modify this to improve accessibility
+
+-   **persistent storage**: I wanted to implement [localForage](https://github.com/localForage/localForage)
+    to provide persistent data but decided against it since that wouldn't be ideal, and I would also have had
+    to create a way to clear said persistent data, which would've been different from the given design
 
 #### todos:
 
