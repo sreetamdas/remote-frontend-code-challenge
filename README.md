@@ -6,6 +6,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 -   TypeScript
 -   Styled components
 -   Jest + React Testing Library
+-   Node `v10.19.0`
 
 and that's it! as requested, there's no prebuilt CSS/libraries being used.
 
@@ -64,3 +65,7 @@ yarn compile
 -   **TypeScript**: using TS allows the codebase to be scalable much more easily, especially when one is working in collaboration with other contributors. Plus, it's always nice to have it catch errors that might otherwise be easily overlooked
 
 -   **crypto**: using cryptographically secure `id`s is a nice way to highlight the problems with `Math.random()`, and I didn't want to resort to installing a package solely for creating a 10 digit random number. Plus, it gave me a reason to add a `setupTests.ts` file for `jest`
+
+### Known issues
+
+-   **accessibility**: lighthouse scores for accessibility hover around 93, and the only issues is the contrast between the `background-color` and `color` of the text. I wanted to stick to the provided design as much as possible, but since we're using [CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) we can quickly modify this to improve accessibility
