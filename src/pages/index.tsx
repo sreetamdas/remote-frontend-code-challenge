@@ -35,8 +35,32 @@ const Home = () => {
 						</span>
 					</div>
 					<Link href="/update">
-						<StyledButton primary dropShadow size="large">
-							Add Employee
+						<StyledButton
+							primary
+							dropShadow
+							size="large"
+							style={{
+								display: "grid",
+								gridTemplateColumns: "max-content 1fr",
+								alignContent: "center",
+								gridGap: "10px",
+							}}
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="18"
+								height="18"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								strokeWidth="2"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							>
+								<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+								<circle cx="12" cy="7" r="4"></circle>
+							</svg>
+							Add employee
 						</StyledButton>
 					</Link>
 				</PeopleListActionBar>
