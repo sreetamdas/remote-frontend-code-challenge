@@ -10,18 +10,12 @@ const GlobalStyles = createGlobalStyle`
 	:root {
 		--color-primary-accent: #624de3;
 		--color-primary-accent-faded: #624de34d;
-		--color-primary: #000;
 		--color-background: #f4f7fc;
-		--color-inlineCode-fg: #EB5757;
-		--color-inlineCode-bg: #eee;
-		--color-secondary-accent: #61DAFB;
 		--header-bg-color: #FFF;
-		--font-family-code: SFMono-Regular, Consolas, Roboto Mono, Menlo, Monaco, Liberation Mono, Lucida Console, monospace;
 
 		--color-text-soft: #525F7F;
 		--color-text-softer: #778CA3;
 		--color-text-main: #00234B;
-
 	}
 
   	html, body {
@@ -57,6 +51,7 @@ export type TPeopleContext = {
 	peopleList: Array<TPeopleAttributes>;
 	setPeopleList: Dispatch<SetStateAction<Array<TPeopleAttributes>>>;
 };
+// create a context and export it so that it can be used elsewhere
 export const PeopleContext = createContext<TPeopleContext>({} as TPeopleContext);
 
 const App = ({ Component, pageProps }: AppProps) => {

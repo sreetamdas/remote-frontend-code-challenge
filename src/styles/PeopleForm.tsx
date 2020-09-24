@@ -1,7 +1,7 @@
 import { TAlertProps } from "components/PeopleForm";
 import styled from "styled-components";
 
-export const PeopleFormContainer = styled.div`
+export const PeopleFormContainer = styled.form`
 	display: grid;
 	border-radius: 10px;
 	background-color: #fff;
@@ -48,6 +48,7 @@ export const PeopleFormTextInput = styled.input`
 		opacity: 100%;
 	}
 
+	/* add highlight when corresponsing input field in in focus */
 	&:focus {
 		outline: none;
 		border-bottom: var(--color-primary-accent) 1.5px solid;
@@ -66,6 +67,7 @@ export const PeopleFormDateInput = styled.input.attrs({ type: "date" })`
 		outline: none;
 		border-bottom: var(--color-primary-accent) 1.5px solid;
 	}
+	/* remove the calendar icon */
 	&::-webkit-calendar-picker-indicator {
 		display: none;
 		-webkit-appearance: none;
@@ -94,11 +96,13 @@ export const PeopleFormSelectInput = styled.select`
 `;
 
 export const FormCaptureFocus = styled.div<{ isSelect?: boolean }>`
+	/* to know whether the child input field is in focus */
 	&:focus-within {
 		color: var(--color-primary-accent);
 	}
 	position: relative;
 
+	/* use custom icon for select's dropdown */
 	${({ isSelect }) =>
 		isSelect &&
 		`
@@ -129,6 +133,7 @@ export const AlertWrapper = styled.div<TAlertProps>`
 	background: rgb(255, 240, 240);
 	color: rgba(180, 0, 0, 0.8);
 
+	/* transition the alert */
 	transform: translate(-50%, ${({ visible }) => (visible ? "0" : "-80px")});
 	opacity: ${({ visible }) => (visible ? "100%" : "0")};
 	visibility: ${({ visible }) => (visible ? "visible" : "hidden")};

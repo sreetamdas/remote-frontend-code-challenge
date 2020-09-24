@@ -15,6 +15,7 @@ const LIST_HEADINGS = ["Employee", "Job Title", "Country", "Salary", ""];
 
 export const PeopleList = () => {
 	const { peopleList } = useContext(PeopleContext);
+
 	return (
 		<PeopleListContainer>
 			<PeopleListHeadingRow>

@@ -22,3 +22,7 @@ export const StyledButton = styled.button<TStyledButtonProps>`
 	background-color: ${({ primary }) => (primary ? "var(--color-primary-accent)" : "transparent")};
 	box-shadow: ${({ dropShadow }) => (dropShadow ? "0px 6px 12px rgba(98, 77, 227, 0.3)" : null)};
 `;
+
+export const ReallyBigTitle = styled.h1`
+	font-size: 5rem;
+`;

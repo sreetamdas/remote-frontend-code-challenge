@@ -8,7 +8,7 @@ const AddRecord = () => {
 	return (
 		<Fragment>
 			<Head>
-				<title>People List</title>
+				<title>Add person</title>
 			</Head>
 			<GridContainer>
 				<PeopleForm />

@@ -13,7 +13,7 @@ const Home = () => {
 	return (
 		<Fragment>
 			<Head>
-				<title>People List</title>
+				<title>People list</title>
 			</Head>
 			<GridContainer>
 				<PeopleListActionBar>
@@ -46,6 +46,7 @@ const Home = () => {
 								gridGap: "10px",
 							}}
 						>
+							{/* user icon */}
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								width="18"
